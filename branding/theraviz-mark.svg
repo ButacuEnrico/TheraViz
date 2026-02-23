@@ -1,0 +1,38 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">TheraViz mark</title>
+  <desc id="desc">Square icon mark for TheraViz</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D111A"/>
+      <stop offset="100%" stop-color="#141B28"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#90BFFF"/>
+      <stop offset="100%" stop-color="#5A8CE2"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#CADCFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#8CB5F4" stop-opacity="0.65"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="40" y="40" width="944" height="944" rx="140" fill="url(#bg)"/>
+  <rect x="42" y="42" width="940" height="940" rx="138" stroke="#D9E7FF" stroke-opacity="0.18" stroke-width="4"/>
+
+  <path d="M152 512H872" stroke="#C6D9FF" stroke-opacity="0.22" stroke-width="3"/>
+  <path d="M152 372H872" stroke="#C6D9FF" stroke-opacity="0.08" stroke-width="2"/>
+  <path d="M152 652H872" stroke="#C6D9FF" stroke-opacity="0.08" stroke-width="2"/>
+
+  <path d="M164 516 C214 516 214 302 270 302 C329 302 330 695 388 695 C446 695 445 245 506 245 C568 245 566 758 628 758 C691 758 690 420 752 420 C803 420 809 512 860 512"
+    stroke="url(#line)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+  <path d="M512 190 L428 445 H539 L458 760" stroke="url(#accent)" stroke-width="46" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+</svg>

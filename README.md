@@ -1,6 +1,12 @@
 # TheraViz
 
+![TheraViz logo](branding/theraviz-logo.svg)
+
 TheraViz is a professional audio-reactive visual generator for artists.
+
+## GitHub About
+
+TheraViz by Butacu Enrico is a professional audio-reactive visual studio to create, edit, and export HD music videos synchronized to your track.
 
 ## Signature
 

@@ -37,6 +37,10 @@ python3 -m http.server 4173
 
 Open: `http://localhost:4173`
 
+## Live site
+
+`https://butacuenrico.github.io/TheraViz/`
+
 ## Usage
 
 1. Click `LOAD AUDIO` and choose a track.

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TheraViz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="ambient-bg" aria-hidden="true">
+      <div class="grid-overlay"></div>
+    </div>
+
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <canvas id="spectrum" aria-hidden="true"></canvas>
+
+    <header class="topbar">
+      <div class="brand-wrap">
+        <p class="eyebrow">Professional Audio Reactive Engine</p>
+        <h1>TheraViz <span class="brand-signature">by Butacu Enrico</span></h1>
+        <p id="trackInfo" class="track-info">Carica una traccia per iniziare</p>
+      </div>
+      <div class="top-actions">
+        <label class="icon-btn upload-btn" title="Carica audio">
+          <span>LOAD AUDIO</span>
+          <input id="audioFile" type="file" accept="audio/*" />
+        </label>
+        <button id="playPause" class="icon-btn" disabled>PLAY</button>
+        <button id="stopBtn" class="icon-btn" disabled>STOP</button>
+        <button id="randomizeBtn" class="icon-btn">GENERATE</button>
+      </div>
+    </header>
+
+    <aside class="status-box">
+      <div>
+        <p class="status-label">BPM</p>
+        <p id="bpmReadout" class="status-value">--</p>
+      </div>
+      <div>
+        <p class="status-label">ENERGY</p>
+        <p id="energyReadout" class="status-value">0%</p>
+      </div>
+      <div>
+        <p class="status-label">FREQ FOCUS</p>
+        <p id="focusReadout" class="status-value">Idle</p>
+      </div>
+      <div>
+        <p class="status-label">TIME</p>
+        <p id="timeReadout" class="status-value">00:00 / 00:00</p>
+      </div>
+    </aside>
+
+    <section class="control-shell">
+      <nav class="tabs" aria-label="Editor tabs">
+        <button class="tab active" data-tab="audio">Audio</button>
+        <button class="tab" data-tab="shape">Shape</button>
+        <button class="tab" data-tab="fx">FX</button>
+        <button class="tab" data-tab="color">Color</button>
+        <button class="tab" data-tab="export">Export</button>
+      </nav>
+
+      <div class="panels">
+        <div class="panel active" data-panel="audio">
+          <div class="field full-width">
+            <label for="seekBar">Timeline</label>
+            <input id="seekBar" type="range" min="0" max="1000" value="0" step="1" disabled />
+          </div>
+          <div class="field">
+            <label for="volume">Volume <span id="volumeValue" class="value">90%</span></label>
+            <input id="volume" type="range" min="0" max="1" step="0.01" value="0.9" />
+          </div>
+          <div class="field">
+            <label for="sensitivity">Sensitivity <span id="sensitivityValue" class="value">1.35</span></label>
+            <input id="sensitivity" type="range" min="0.2" max="3" step="0.01" value="1.35" />
+          </div>
+          <div class="field">
+            <label for="smoothness">Smoothness <span id="smoothnessValue" class="value">0.65</span></label>
+            <input id="smoothness" type="range" min="0" max="0.95" step="0.01" value="0.65" />
+          </div>
+          <div class="field">
+            <label for="rotationSpeed">Rotation <span id="rotationSpeedValue" class="value">0.90</span></label>
+            <input id="rotationSpeed" type="range" min="0" max="2.5" step="0.01" value="0.9" />
+          </div>
+          <div class="field">
+            <label for="pulseStrength">Pulse <span id="pulseStrengthValue" class="value">0.72</span></label>
+            <input id="pulseStrength" type="range" min="0" max="2" step="0.01" value="0.72" />
+          </div>
+        </div>
+
+        <div class="panel" data-panel="shape">
+          <div class="field">
+            <label for="visualScene">Visual System</label>
+            <select id="visualScene">
+              <option value="sculpt">Sculpt 3D</option>
+              <option value="wavefield">Waveform Ribbon</option>
+              <option value="lightning">Lightning Lattice</option>
+              <option value="spectrum-grid">Spectrum Columns</option>
+              <option value="hybrid" selected>Hybrid Director</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="shapeType">Shape</label>
+            <select id="shapeType">
+              <option value="icosahedron">Icosahedron</option>
+              <option value="torusKnot">Torus Knot</option>
+              <option value="sphere">Sphere</option>
+              <option value="octahedron">Octahedron</option>
+              <option value="dodecahedron">Dodecahedron</option>
+              <option value="torus">Torus</option>
+              <option value="capsule">Capsule</option>
+              <option value="box">Cube Matrix</option>
+              <option value="plane">Plane Surface</option>
+              <option value="helix">Helix Coil</option>
+              <option value="cone">Cone Core</option>
+              <option value="cylinder">Cylinder Flow</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="visualMode">Material</label>
+            <select id="visualMode">
+              <option value="aura">Soft Glow</option>
+              <option value="solid">Studio Solid</option>
+              <option value="dual">Dual Layer</option>
+              <option value="fractal">Flat Shaded</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="complexity">Complexity <span id="complexityValue" class="value">3</span></label>
+            <input id="complexity" type="range" min="1" max="5" step="1" value="3" />
+          </div>
+          <div class="field">
+            <label for="deformAmount">Deformation <span id="deformAmountValue" class="value">0.32</span></label>
+            <input id="deformAmount" type="range" min="0" max="1.4" step="0.01" value="0.32" />
+          </div>
+          <div class="field">
+            <label for="particleAmount">Particles <span id="particleAmountValue" class="value">1200</span></label>
+            <input id="particleAmount" type="range" min="200" max="4000" step="10" value="1200" />
+          </div>
+          <div class="field checkbox-field">
+            <label for="wireframe">Wireframe</label>
+            <input id="wireframe" type="checkbox" />
+          </div>
+        </div>
+
+        <div class="panel" data-panel="fx">
+          <div class="field">
+            <label for="bloomStrength">Bloom <span id="bloomStrengthValue" class="value">0.55</span></label>
+            <input id="bloomStrength" type="range" min="0" max="3" step="0.01" value="0.55" />
+          </div>
+          <div class="field">
+            <label for="trailDamp">Trail <span id="trailDampValue" class="value">0.93</span></label>
+            <input id="trailDamp" type="range" min="0.6" max="0.98" step="0.001" value="0.93" />
+          </div>
+          <div class="field">
+            <label for="glitchAmount">Glitch RGB <span id="glitchAmountValue" class="value">0.0004</span></label>
+            <input id="glitchAmount" type="range" min="0" max="0.02" step="0.0001" value="0.0004" />
+          </div>
+          <div class="field">
+            <label for="filmNoise">Film Grain <span id="filmNoiseValue" class="value">0.08</span></label>
+            <input id="filmNoise" type="range" min="0" max="1" step="0.01" value="0.08" />
+          </div>
+          <div class="field">
+            <label for="cameraMotion">Camera Motion <span id="cameraMotionValue" class="value">0.22</span></label>
+            <input id="cameraMotion" type="range" min="0" max="1" step="0.01" value="0.22" />
+          </div>
+          <div class="field checkbox-field">
+            <label for="autoRotate">Auto Rotate</label>
+            <input id="autoRotate" type="checkbox" checked />
+          </div>
+        </div>
+
+        <div class="panel" data-panel="color">
+          <div class="field">
+            <label for="palettePreset">Palette</label>
+            <select id="palettePreset">
+              <option value="neon-cyan">Neon Cyan</option>
+              <option value="solar-flare">Solar Flare</option>
+              <option value="toxic-wave">Toxic Wave</option>
+              <option value="nordic-ice">Nordic Ice</option>
+              <option value="infrared">Infrared</option>
+            </select>
+          </div>
+          <div class="field color-field">
+            <label for="primaryColor">Primary</label>
+            <input id="primaryColor" type="color" value="#8ec4ff" />
+          </div>
+          <div class="field color-field">
+            <label for="secondaryColor">Secondary</label>
+            <input id="secondaryColor" type="color" value="#4f89d9" />
+          </div>
+          <div class="field color-field">
+            <label for="accentColor">Accent</label>
+            <input id="accentColor" type="color" value="#c6dcff" />
+          </div>
+          <div class="field color-field">
+            <label for="backgroundColor">Background</label>
+            <input id="backgroundColor" type="color" value="#090b10" />
+          </div>
+          <div class="field">
+            <label for="hueShiftSpeed">Hue Drift <span id="hueShiftSpeedValue" class="value">0.15</span></label>
+            <input id="hueShiftSpeed" type="range" min="0" max="1" step="0.01" value="0.15" />
+          </div>
+          <div class="field checkbox-field">
+            <label for="palettePulse">Palette Pulse</label>
+            <input id="palettePulse" type="checkbox" checked />
+          </div>
+        </div>
+
+        <div class="panel" data-panel="export">
+          <div class="field">
+            <label for="projectName">Project Name</label>
+            <input id="projectName" type="text" maxlength="48" value="TheraViz Session" />
+          </div>
+          <div class="field">
+            <label for="presetSelect">Saved Presets</label>
+            <select id="presetSelect"></select>
+          </div>
+          <div class="field">
+            <label for="exportFps">Export FPS</label>
+            <select id="exportFps">
+              <option value="24">24</option>
+              <option value="30" selected>30</option>
+              <option value="60">60</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="exportResolution">Resolution</label>
+            <select id="exportResolution">
+              <option value="1280x720">HD 720p</option>
+              <option value="1920x1080" selected>Full HD 1080p</option>
+              <option value="2560x1440">2K 1440p</option>
+              <option value="3840x2160">4K UHD</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="exportBitrate">Video Bitrate</label>
+            <select id="exportBitrate">
+              <option value="16">16 Mbps</option>
+              <option value="28" selected>28 Mbps</option>
+              <option value="40">40 Mbps</option>
+              <option value="60">60 Mbps</option>
+            </select>
+          </div>
+
+          <div class="button-grid full-width">
+            <button id="savePresetBtn" class="action-btn">Save Preset</button>
+            <button id="loadPresetBtn" class="action-btn">Load Preset</button>
+            <button id="deletePresetBtn" class="action-btn danger">Delete</button>
+            <button id="downloadProjectBtn" class="action-btn">Save Project JSON</button>
+            <label class="action-btn upload-btn file-btn">
+              Import JSON
+              <input id="loadProjectFile" type="file" accept="application/json" />
+            </label>
+            <button id="exportVideoBtn" class="action-btn primary">Export Video</button>
+          </div>
+
+          <p id="exportStatus" class="export-status">Ready: esporta un file video (.webm o .mp4 se supportato)</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="hint">Consiglio: usa Chrome o Edge per export video/audio perfettamente sincronizzato.</p>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <audio id="audioElement" preload="auto"></audio>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

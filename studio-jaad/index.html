@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio JAAD — Portfolio &amp; Esposizione</title>
+  <meta name="description" content="Studio JAAD — portfolio ed esposizione digitale. Progetti selezionati, visione e contatti." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◑</text></svg>" />
+</head>
+<body data-theme="dark">
+
+  <!-- ═══════════════ PRELOADER ═══════════════ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <span class="preloader__word">
+        <span class="preloader__letter">J</span><span class="preloader__letter">A</span><span class="preloader__letter">A</span><span class="preloader__letter">D</span>
+      </span>
+      <span class="preloader__count" id="preloaderCount">0</span>
+    </div>
+    <div class="preloader__curtain"></div>
+  </div>
+
+  <!-- ═══════════════ CURSOR ═══════════════ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+    <span class="cursor__label" id="cursorLabel"></span>
+  </div>
+
+  <!-- ═══════════════ GRAIN ═══════════════ -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ═══════════════ PROGRESS BAR ═══════════════ -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" data-cursor="hover">
+      <span class="nav__logo-mark">◑</span>
+      <span class="nav__logo-text">STUDIO&nbsp;JAAD<sup>®</sup></span>
+    </a>
+    <nav class="nav__links" aria-label="Navigazione principale">
+      <a href="#lavori" class="nav__link" data-cursor="hover"><span data-num="01">Lavori</span></a>
+      <a href="#studio" class="nav__link" data-cursor="hover"><span data-num="02">Studio</span></a>
+      <a href="#servizi" class="nav__link" data-cursor="hover"><span data-num="03">Visione</span></a>
+      <a href="#contatti" class="nav__link" data-cursor="hover"><span data-num="04">Contatti</span></a>
+    </nav>
+    <div class="nav__right">
+      <a class="nav__ig" data-cursor="hover" href="https://www.instagram.com/studiojaad" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+        <span>@studiojaad</span>
+      </a>
+      <button class="nav__burger" id="burger" aria-label="Apri menu" aria-expanded="false" data-cursor="hover">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ MENU OVERLAY ═══════════════ -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg"></div>
+    <div class="menu__content">
+      <nav class="menu__nav" aria-label="Menu">
+        <a href="#lavori" class="menu__link" data-cursor="hover"><small>01</small><span class="menu__link-text">Lavori</span></a>
+        <a href="#studio" class="menu__link" data-cursor="hover"><small>02</small><span class="menu__link-text">Studio</span></a>
+        <a href="#servizi" class="menu__link" data-cursor="hover"><small>03</small><span class="menu__link-text">Visione</span></a>
+        <a href="#contatti" class="menu__link" data-cursor="hover"><small>04</small><span class="menu__link-text">Contatti</span></a>
+      </nav>
+      <div class="menu__footer">
+        <a href="https://www.instagram.com/studiojaad" target="_blank" rel="noopener" data-cursor="hover">Instagram ↗</a>
+        <span class="menu__hint">© <span id="menuYear"></span> Studio JAAD</span>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__orb hero__orb--1"></div>
+        <div class="hero__orb hero__orb--2"></div>
+        <div class="hero__lines"></div>
+      </div>
+
+      <p class="hero__eyebrow reveal-line"><span>Portfolio — Esposizione digitale</span></p>
+
+      <h1 class="hero__title" aria-label="Studio JAAD">
+        <span class="hero__row" data-split>STUDIO</span>
+        <span class="hero__row hero__row--accent" data-split>JAAD</span>
+      </h1>
+
+      <div class="hero__meta">
+        <p class="hero__desc reveal-line"><span>Uno spazio curato dove ogni progetto è un'opera in mostra.<br/>Forma, luce e dettaglio — niente di superfluo.</span></p>
+        <div class="hero__cta reveal-line"><span>
+          <a href="#lavori" class="btn btn--primary" data-magnetic data-cursor="hover">Esplora i lavori <em>↓</em></a>
+          <a href="https://www.instagram.com/studiojaad" target="_blank" rel="noopener" class="btn btn--ghost" data-magnetic data-cursor="hover">Instagram ↗</a>
+        </span></div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span class="hero__scroll-line"></span>
+        <span class="hero__scroll-text">scroll</span>
+      </div>
+
+      <div class="hero__badge" aria-hidden="true">
+        <svg viewBox="0 0 120 120" class="hero__badge-svg">
+          <defs><path id="circlePath" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+          <text><textPath href="#circlePath">STUDIO JAAD • PORTFOLIO • ESPOSIZIONE • MMXXVI •</textPath></text>
+        </svg>
+        <span class="hero__badge-center">◑</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MARQUEE ═══════════════ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marqueeTrack">
+        <span>Progetti selezionati</span><i>◑</i>
+        <span>Design</span><i>◆</i>
+        <span>Immagine</span><i>◑</i>
+        <span>Dettaglio</span><i>◆</i>
+        <span>Materia</span><i>◑</i>
+        <span>Luce</span><i>◆</i>
+      </div>
+    </div>
+
+    <!-- ═══════════════ LAVORI ═══════════════ -->
+    <section class="works section" id="lavori">
+      <div class="section__head">
+        <h2 class="section__title" data-split-words>Lavori in mostra</h2>
+        <div class="section__sub">
+          <span class="section__num">01</span>
+          <p class="reveal-line"><span>Una selezione dal profilo — ogni pezzo con il suo respiro.</span></p>
+        </div>
+      </div>
+
+      <div class="works__filters" id="filters" role="tablist" aria-label="Filtra i lavori"></div>
+
+      <div class="works__grid" id="worksGrid"></div>
+
+      <p class="works__note reveal-line"><span>Vuoi vedere tutto l'archivio? <a href="https://www.instagram.com/studiojaad" target="_blank" rel="noopener" data-cursor="hover">Il feed completo è su Instagram ↗</a></span></p>
+    </section>
+
+    <!-- ═══════════════ STATEMENT ═══════════════ -->
+    <section class="statement section" id="studio">
+      <div class="section__head">
+        <h2 class="section__title" data-split-words>Lo studio</h2>
+        <div class="section__sub">
+          <span class="section__num">02</span>
+        </div>
+      </div>
+      <p class="statement__text" id="statementText">
+        JAAD è un laboratorio visivo: ogni progetto nasce da un'idea semplice, cresce nel dettaglio e si espone come in una galleria. Meno rumore, più intenzione.
+      </p>
+      <div class="statement__stats">
+        <div class="stat reveal-up"><strong data-count="24">0</strong><span>progetti esposti</span></div>
+        <div class="stat reveal-up"><strong data-count="6">0</strong><span>discipline intrecciate</span></div>
+        <div class="stat reveal-up"><strong data-count="100">0</strong><span>% fatto a mano</span></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ VISIONE / SERVIZI ═══════════════ -->
+    <section class="services section" id="servizi">
+      <div class="section__head">
+        <h2 class="section__title" data-split-words>La visione</h2>
+        <div class="section__sub">
+          <span class="section__num">03</span>
+          <p class="reveal-line"><span>Come guardiamo, come costruiamo.</span></p>
+        </div>
+      </div>
+      <ul class="services__list">
+        <li class="service reveal-up" data-cursor="hover">
+          <span class="service__idx">01</span>
+          <h3>Concept &amp; Direzione</h3>
+          <p>L'idea prima di tutto: ricerca, riferimenti, un punto di vista netto.</p>
+          <span class="service__arrow">→</span>
+        </li>
+        <li class="service reveal-up" data-cursor="hover">
+          <span class="service__idx">02</span>
+          <h3>Immagine &amp; Composizione</h3>
+          <p>Inquadrature pulite, luce controllata, geometrie che respirano.</p>
+          <span class="service__arrow">→</span>
+        </li>
+        <li class="service reveal-up" data-cursor="hover">
+          <span class="service__idx">03</span>
+          <h3>Materia &amp; Dettaglio</h3>
+          <p>Texture, superfici, imperfezioni volute: il carattere sta nei margini.</p>
+          <span class="service__arrow">→</span>
+        </li>
+        <li class="service reveal-up" data-cursor="hover">
+          <span class="service__idx">04</span>
+          <h3>Esposizione</h3>
+          <p>Ogni lavoro presentato come un pezzo unico, con spazio e silenzio intorno.</p>
+          <span class="service__arrow">→</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ═══════════════ INSTAGRAM CTA ═══════════════ -->
+    <section class="igcta section" id="contatti">
+      <div class="igcta__inner">
+        <p class="igcta__eyebrow reveal-line"><span>Seguici — il feed è la galleria</span></p>
+        <a href="https://www.instagram.com/studiojaad" target="_blank" rel="noopener" class="igcta__handle" data-cursor="view" data-split>@studiojaad</a>
+        <a href="https://www.instagram.com/studiojaad" target="_blank" rel="noopener" class="btn btn--primary btn--big" data-magnetic data-cursor="hover">Apri Instagram ↗</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">◑ STUDIO JAAD<sup>®</sup></span>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#lavori" data-cursor="hover">Lavori</a>
+        <a href="#studio" data-cursor="hover">Studio</a>
+        <a href="#servizi" data-cursor="hover">Visione</a>
+        <a href="https://www.instagram.com/studiojaad" target="_blank" rel="noopener" data-cursor="hover">Instagram ↗</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="footerYear"></span> Studio JAAD — Tutti i diritti riservati</span>
+      <button class="footer__totop" id="toTop" data-cursor="hover" aria-label="Torna su">Torna su ↑</button>
+    </div>
+  </footer>
+
+  <!-- ═══════════════ LIGHTBOX ═══════════════ -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Anteprima lavoro">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Chiudi" data-cursor="hover">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Precedente" data-cursor="hover">←</button>
+    <figure class="lightbox__figure">
+      <div class="lightbox__media" id="lightboxMedia"></div>
+      <figcaption class="lightbox__caption">
+        <strong id="lightboxTitle"></strong>
+        <span id="lightboxMeta"></span>
+      </figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Successivo" data-cursor="hover">→</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
